@@ -1,0 +1,3 @@
+Host github-bit-csb
+  HostName github.com
+  IdentityFile ~/.ssh/id_bit_csb

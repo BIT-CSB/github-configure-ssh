@@ -1,0 +1,21 @@
+name: 'Configure SSH'
+
+description: 'Configure SSH to work with ssh token instead of GITHUB_TOKEN'
+
+inputs:
+  privateSshKey:
+    description: 'The private ssh key to setup'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure with private ssh key
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        cp config ~/.ssh
+        echo "${{ inputs.privateSshKey }}" > id_bit_csb
+        chmod 400 id_bit_csb 
+        mv id_bit_csb ~/.ssh
+      working-directory: ${{ github.action_path }}
